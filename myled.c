@@ -55,13 +55,13 @@ static ssize_t  led_write(struct file* filp, const char* buf, size_t count, loff
 	if(copy_from_user(&c,buf,sizeof(char)))
 		return -EFAULT;
 
-	if(c =='p') {
+	if(c >= '\x31' && c <= '\x39' ) {
         	int ip = 0;
-		while (ip < 50){
+		while (ip < 5){
 			gpio_base[7] = 1 << 16;
-			mdelay(50);
+			mdelay(c*100);
 			gpio_base[10] = 1 << 16;
-			mdelay(10);
+			mdelay(100);
 			ip++;
 		}
 	}
@@ -81,9 +81,9 @@ static ssize_t  led_write(struct file* filp, const char* buf, size_t count, loff
 		int ib = 0;
 		while(ib < 5) {
 			gpio_base[7] = 1 << 23;
-			mdelay(1500);
+			mdelay(2000);
 			gpio_base[10] = 1 << 23;
-			mdelay(200);
+			mdelay(500);
 			ib++;
 		}
 	}
@@ -91,11 +91,12 @@ static ssize_t  led_write(struct file* filp, const char* buf, size_t count, loff
 	else if(c == 'A') {
 		int iA = 0;
 		while(iA < 10) {
-			gpio_base[7] = 1 << 16;		
+			gpio_base[7] = 1 << 16;
+			gpio_base[7] = 1 << 24;
 			gpio_base[7] = 1 << 23;
 			mdelay(200);
 			gpio_base[10] = 1 << 16;
-			mdelay(400);
+			gpio_base[10] = 1 << 24;
 			gpio_base[10] = 1 << 23;
 			mdelay(200);
 			iA++;
