@@ -55,18 +55,18 @@ static ssize_t  led_write(struct file* filp, const char* buf, size_t count, loff
 	if(copy_from_user(&c,buf,sizeof(char)))
 		return -EFAULT;
 
-	if(c == 'r') {
-        	int ib = 0;
-		while (ib < 5) {
+	if(c =='p') {
+        	int ip = 0;
+		while (ip < 50){
 			gpio_base[7] = 1 << 16;
-			mdelay(2000);
+			mdelay(50);
 			gpio_base[10] = 1 << 16;
-			mdelay(500);
-			ib++;
+			mdelay(10);
+			ip++;
 		}
 	}
 
-	 else if (c == 'g') { 
+	/* else if (c == 'g') { 
 		int ig = 0;
 		while (ig < 5) {
 			gpio_base[7] = 1 << 24;
@@ -75,15 +75,15 @@ static ssize_t  led_write(struct file* filp, const char* buf, size_t count, loff
 			mdelay(500);
 			ig++;
 		}
-	}
+	}*/
 
- 	else if (c == 'b') {
+	else if (c == 'b') {
 		int ib = 0;
 		while(ib < 5) {
 			gpio_base[7] = 1 << 23;
-			mdelay(2000);
+			mdelay(1500);
 			gpio_base[10] = 1 << 23;
-			mdelay(500);
+			mdelay(200);
 			ib++;
 		}
 	}
@@ -91,12 +91,11 @@ static ssize_t  led_write(struct file* filp, const char* buf, size_t count, loff
 	else if(c == 'A') {
 		int iA = 0;
 		while(iA < 10) {
-			gpio_base[7] = 1 << 16;
-			gpio_base[7] = 1 << 24;
+			gpio_base[7] = 1 << 16;		
 			gpio_base[7] = 1 << 23;
 			mdelay(200);
 			gpio_base[10] = 1 << 16;
-			gpio_base[10] = 1 << 24;
+			mdelay(400);
 			gpio_base[10] = 1 << 23;
 			mdelay(200);
 			iA++;
