@@ -55,33 +55,22 @@ static ssize_t  led_write(struct file* filp, const char* buf, size_t count, loff
 	if(copy_from_user(&c,buf,sizeof(char)))
 		return -EFAULT;
 
-	if(c >= '\x31' && c <= '\x39' ) {
+	if(c == 'p' ) {
         	int ip = 0;
-		while (ip < 5){
+		while (ip < 10){
 			gpio_base[7] = 1 << 16;
-			mdelay(c*100);
-			gpio_base[10] = 1 << 16;
 			mdelay(100);
+			gpio_base[10] = 1 << 16;
+			mdelay(200);
 			ip++;
 		}
 	}
-
-	/* else if (c == 'g') { 
-		int ig = 0;
-		while (ig < 5) {
-			gpio_base[7] = 1 << 24;
-			mdelay(2000);
-			gpio_base[10] = 1 << 24;
-			mdelay(500);
-			ig++;
-		}
-	}*/
 
 	else if (c == 'b') {
 		int ib = 0;
 		while(ib < 5) {
 			gpio_base[7] = 1 << 23;
-			mdelay(2000);
+			mdelay(1500);
 			gpio_base[10] = 1 << 23;
 			mdelay(500);
 			ib++;
@@ -90,16 +79,22 @@ static ssize_t  led_write(struct file* filp, const char* buf, size_t count, loff
 
 	else if(c == 'A') {
 		int iA = 0;
-		while(iA < 10) {
-			gpio_base[7] = 1 << 16;
-			gpio_base[7] = 1 << 24;
+		while(iA < 15) {
+			gpio_base[10] = 1 < 16;
 			gpio_base[7] = 1 << 23;
-			mdelay(200);
+			gpio_base[7] = 1 << 24;
+			mdelay(500);
 			gpio_base[10] = 1 << 16;
-			gpio_base[10] = 1 << 24;
 			gpio_base[10] = 1 << 23;
-			mdelay(200);
+			gpio_base[7] = 1 << 24;
+			mdelay(100);
+			gpio_base[7] = 1 << 16;
+			gpio_base[7] = 1 << 23;
+			gpio_base[10] = 1 << 24;
+	
+			mdelay(200);	
 			iA++;
+			gpio_base[10] = 1 << 23;
 		}
 	}
 
@@ -144,7 +139,7 @@ static int __init init_mod(void)
 	gpio_base = ioremap_nocache(0xfe200000, 0x0A);
 	
 
-	for (i = 0; i < 2; i++) {
+	for (i = 0; i < 3; i++) {
 	const u32 led = LED[i];
 	const u32 index = led/10;
 	const u32 shift = (led%10)*3;
