@@ -1,4 +1,4 @@
-Robot Systems Science Issue 1
+Robot Systems Science task 1
 
 echo b > /dev/myled0  -  Blue LED flashes  
 echo p > /dev/myled0  -  Sound buzzer  
