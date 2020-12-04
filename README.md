@@ -1,4 +1,4 @@
- Robot system science Task1  
+#Robot system science Task1  
  
  LED and Buzzer system  
    
@@ -10,3 +10,9 @@
 
  //Demo
  https://youtu.be/43xtGDb3VXU
+ 
+ //Usage  
+ $git clone
+ $sudo insmod myled.ko  
+ $sudo chmod 666 /dev/myled0  
+
