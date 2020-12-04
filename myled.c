@@ -1,11 +1,5 @@
 /*
- *
- *
- *
- * Copyright　(c) 2020 KentaObata. All rights reseved
- *
- *
- *
+ * Copyright　(c) 2020 Kenta Obata and Ryuichi Ueda. All rights reseved
  *
  *
  * This program is free software: you can redistribute it and/or modifyy
@@ -21,9 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>/
  *
- * 
- *
-*/
+ */
 
 
 #include  <linux/module.h>
@@ -35,7 +27,7 @@
 #include <linux/delay.h>
 
 MODULE_AUTHOR("kenta Obata and Ryuichi Ueda");
-MODULE_DESCRIPTION("drive for LED contral");
+MODULE_DESCRIPTION("drive for LED and Buzzer contral");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.0.1");
 
@@ -46,7 +38,7 @@ static struct class *cls = NULL;
 static volatile u32 *gpio_base = NULL;
 
 static int LED[3] = {16, 23, 24};
-int i;
+int n;
 
 static ssize_t  led_write(struct file* filp, const char* buf, size_t count, loff_t* pos)
 {
@@ -91,7 +83,6 @@ static ssize_t  led_write(struct file* filp, const char* buf, size_t count, loff
 			gpio_base[7] = 1 << 16;
 			gpio_base[7] = 1 << 23;
 			gpio_base[10] = 1 << 24;
-	
 			mdelay(200);	
 			iA++;
 			gpio_base[10] = 1 << 23;
@@ -139,8 +130,8 @@ static int __init init_mod(void)
 	gpio_base = ioremap_nocache(0xfe200000, 0x0A);
 	
 
-	for (i = 0; i < 3; i++) {
-	const u32 led = LED[i];
+	for (n = 0; n < 3; n++) {
+	const u32 led = LED[n];
 	const u32 index = led/10;
 	const u32 shift = (led%10)*3;
 	const u32 mask = ~(0x7 << shift);
