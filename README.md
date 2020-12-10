@@ -14,12 +14,12 @@ https://youtu.be/43xtGDb3VXU
 OS:Linux20.04.1 LTS
 
 # What was used
-Raspberry Pi 4 (8GB)
-Universal board
-LED(blue, red)　one for each
-Resistance　220Ω　2pieces
-Jumper wire 4pieces
-圧電スピーカー(SPT08)
+Raspberry Pi 4 (8GB)  
+Universal board  
+LED(blue, red)　one for each  
+Resistance　220Ω　2pieces  
+Jumper wire 4pieces  
+圧電スピーカー(SPT08)  
 
 # Usage  
 ~~~
