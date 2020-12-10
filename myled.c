@@ -131,11 +131,11 @@ static int __init init_mod(void)
 	
 
 	for (n = 0; n < 3; n++) {
-	const u32 led = LED[n];
-	const u32 index = led/10;
-	const u32 shift = (led%10)*3;
-	const u32 mask = ~(0x7 << shift);
-	gpio_base[index] = (gpio_base[index] & mask) | (0x1 << shift);
+	        const u32 led = LED[n];
+	        const u32 index = led/10;
+	        const u32 shift = (led%10)*3;
+	        const u32 mask = ~(0x7 << shift);
+	        gpio_base[index] = (gpio_base[index] & mask) | (0x1 << shift);
 	}
 
 	return 0;
