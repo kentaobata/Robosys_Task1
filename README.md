@@ -29,6 +29,10 @@ $make
 $sudo insmod myled.ko  
 $sudo chmod 666 /dev/myled0  　
 ~~~
+
+# LICENSE  
+GPL-3.0  
+
 # Reference　　
 https://github.com/ryuichiueda/robosys_device_drivers　　
 
